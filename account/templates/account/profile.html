@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+            text-align: center;
+        }
+        label {
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .edit-btn {
+            background: #17a2b8;
+        }
+        .edit-btn:hover {
+            background: #117a8b;
+        }
+        .logout {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .logout:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Profile</h2>
+        <form method="post" id="profileForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="saveBtn" style="display: none;">Save Changes</button>
+        </form>
+        <button type="button" class="edit-btn" id="editBtn">Edit Profile</button>
+        <a href="{% url 'logout' %}" class="logout">Logout</a>
+    </div>
+
+    <script>
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const formInputs = document.querySelectorAll('#profileForm input');
+
+        // Initially disable all input fields
+        formInputs.forEach(input => input.readOnly = true);
+
+        editBtn.addEventListener('click', () => {
+            formInputs.forEach(input => input.readOnly = false);
+            saveBtn.style.display = 'block';
+            editBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

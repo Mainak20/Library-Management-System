@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logged Out</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 350px; margin: 80px auto; border: 1px solid #ddd; padding: 30px; border-radius: 8px; text-align: center; }
+        a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>You have been logged out.</h2>
+        <a href="{% url 'login' %}">Login again</a>
+    </div>
+</body>
+</html>
